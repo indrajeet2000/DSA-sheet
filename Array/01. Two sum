@@ -18,3 +18,32 @@ public:
         return {a,b};
     }
 };
+
+
+
+optimsed one:
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int a=0,b=0;
+        unordered_map<int,int> hashmap;
+        vector<int> ans;
+        int s=nums.size();
+        for(int i=0;i<s;i++)
+        {
+           if(hashmap.find(target-nums[i])!=hashmap.end())
+           {
+               ans.push_back(hashmap[target-nums[i]]);
+               ans.push_back(i);
+               return ans;
+           }
+            
+           else
+           {
+               hashmap[nums[i]]=i;
+           } 
+        }
+        return ans;
+    }
+};
