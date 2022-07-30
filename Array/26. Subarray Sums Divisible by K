@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        unordered_map<int,int> hash_map;
+        hash_map[0]=1;
+        int sum=0;
+        int rem=0;
+        int ans=0;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            rem=sum%k;
+            
+            if(rem<0) rem=rem+k;
+            
+            if(hash_map.find(rem)!=hash_map.end())
+            {
+                ans+=hash_map[rem];
+                hash_map[rem]++;
+            }
+            
+            else hash_map[rem]=1;
+        }
+        return ans;
+    }
+};
