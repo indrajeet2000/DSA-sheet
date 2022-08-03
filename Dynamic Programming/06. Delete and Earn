@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums) {
+        int s=10001;   // buffer overflow thats why didn't used nums.size()
+        vector<int> freq(s,0);
+        for(int num:nums)
+        {
+            freq[num]+=num;
+        }
+        vector<int> dp(s,0);
+        dp[0]=0;
+        dp[1]=freq[1];
+        for(int i=2;i<s;i++)
+        {
+            dp[i]=max(dp[i-2]+freq[i],dp[i-1]);
+        }
+         return dp[s-1];
+    }
+};
